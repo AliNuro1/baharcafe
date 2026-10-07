@@ -11,20 +11,23 @@ interface Props {
 
 const {
   title = `${site.name} — ${site.tagline} in Manchester`,
-  description = "Bahar Cafe on Claremont Road, Manchester. Somali and Kenyan cooking in a welcoming neighbourhood cafe.",
+  description = "Bahar Cafe on Claremont Road, Moss Side, Manchester. Somali cooking with flavours from across East Africa.",
 } = Astro.props;
 
 const jsonLd = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "Restaurant",
   name: site.name,
-  servesCuisine: ["Somali", "Kenyan", "East African"],
+  telephone: site.phone.label,
+  servesCuisine: ["Somali", "East African"],
   address: {
     "@type": "PostalAddress",
     streetAddress: site.location.street,
     addressLocality: site.location.city,
+    postalCode: site.location.postcode,
     addressCountry: "GB",
   },
+  openingHours: "Mo-Su 09:00-18:00",
 });
 ---
 

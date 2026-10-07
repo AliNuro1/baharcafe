@@ -1,21 +1,15 @@
----
-import { site } from "../data/site";
----
-
 <section class="section intro" id="about" aria-labelledby="intro-title">
   <div class="container intro-grid">
     <div>
-      <p class="eyebrow">The kitchen</p>
       <h2 id="intro-title" class="section-title">East African flavours, Manchester table.</h2>
       <p class="lede">
-        Bahar Cafe is a Somali and Kenyan cafe-restaurant on {site.location.street}.
-        Come for suqaar, anjeero, rice, chapati and the kind of welcome that feels like home.
-      </p>
-      <p class="lede">
-        The room is simple and bright. The food is generous. The neighbourhood is {site.location.city}.
+        Bahar Cafe is a Somali cafe with a blend of food from across East Africa. We have been in
+        the heart of Moss Side, on Claremont Road, since 2009. Come for suqaar with anjeero or
+        chapati for breakfast, or our traditional rice and lamb for lunch, served with the kind of
+        welcome that feels like home.
       </p>
     </div>
-    <figure class="photo-slot">
+    <figure class="card">
       <div class="photo-placeholder" role="img" aria-label="Food photograph placeholder">
         <span>Food image</span>
         <small>Placeholder — replace with a cafe or dish photograph</small>
@@ -34,15 +28,14 @@ import { site } from "../data/site";
     gap: 1.5rem;
   }
 
-  .photo-slot {
+  .card {
     margin: 0;
   }
 
   .photo-placeholder {
     min-height: 16rem;
     border-radius: var(--radius-lg);
-    background:
-      linear-gradient(180deg, var(--sky-mist), var(--cream));
+    background: linear-gradient(180deg, var(--sky-mist), var(--cream));
     border: 1px dashed rgba(31, 95, 138, 0.28);
     display: grid;
     place-content: center;

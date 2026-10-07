@@ -5,29 +5,29 @@ import { site } from "../data/site";
 <section class="section location" id="contact" aria-labelledby="location-title">
   <div class="container location-grid">
     <div>
-      <p class="eyebrow">Find us</p>
       <h2 id="location-title" class="section-title">{site.location.name}</h2>
       <p class="address">
         {site.location.street}<br />
-        {site.location.city}
+        {site.location.neighbourhood}<br />
+        {site.location.city}<br />
+        {site.location.postcode}
       </p>
-      <p class="lede">
-        A short walk from everyday Manchester life — look for Bahar Cafe on Claremont Road.
-        Exact unit number and postcode will be added here once confirmed.
-      </p>
-      <p class="placeholder-chip">Address details TBC</p>
+      <p class="lede">Look for Bahar Cafe on Claremont Road, in the heart of Moss Side.</p>
       <div class="actions">
         <a class="btn btn-dark" href={site.location.mapsSearchUrl} target="_blank" rel="noreferrer">
           Get Directions
         </a>
-        <p class="phone">{site.phone.label}</p>
+        <a class="phone" href={site.phone.href}>{site.phone.label}</a>
       </div>
     </div>
-    <div class="map" role="img" aria-label="Map placeholder for Bahar Cafe on Claremont Road, Manchester">
-      <div class="map-inner">
-        <strong>Map placeholder</strong>
-        <span>Replace with the Google Maps embed for the confirmed address.</span>
-      </div>
+    <div class="map">
+      <iframe
+        title="Map of Bahar Cafe, 308 Claremont Road, Manchester"
+        src={site.location.mapsEmbedUrl}
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        allowfullscreen
+      ></iframe>
     </div>
   </div>
 </section>
@@ -60,36 +60,25 @@ import { site } from "../data/site";
   .phone {
     color: var(--muted);
     font-size: 0.92rem;
+    text-decoration: none;
+  }
+
+  .phone:hover {
+    color: var(--sky-ink);
   }
 
   .map {
     min-height: 16.5rem;
     border-radius: var(--radius-lg);
     overflow: hidden;
-    background:
-      radial-gradient(circle at 30% 40%, #cfe7f5 0 18%, transparent 19%),
-      radial-gradient(circle at 70% 60%, #d7ead6 0 12%, transparent 13%),
-      linear-gradient(135deg, #e7f4fb, #efe7d8);
     border: 1px solid var(--line);
-    display: grid;
-    place-items: center;
-    padding: 1rem;
   }
 
-  .map-inner {
-    background: rgba(255, 255, 255, 0.92);
-    border-radius: 16px;
-    padding: 1rem 1.1rem;
-    max-width: 18rem;
-    text-align: center;
-    box-shadow: var(--shadow-sm);
-  }
-
-  .map-inner span {
+  .map iframe {
     display: block;
-    margin-top: 0.35rem;
-    color: var(--muted);
-    font-size: 0.88rem;
+    width: 100%;
+    height: 16.5rem;
+    border: 0;
   }
 
   @media (min-width: 768px) {
@@ -99,8 +88,10 @@ import { site } from "../data/site";
       gap: 2.5rem;
     }
 
-    .map {
+    .map,
+    .map iframe {
       min-height: 24rem;
+      height: 24rem;
     }
   }
 </style>

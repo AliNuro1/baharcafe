@@ -5,20 +5,20 @@ import { site } from "../data/site";
 <section class="section order" id="order" aria-labelledby="order-title">
   <div class="container order-panel">
     <div>
-      <p class="eyebrow">Order online</p>
       <h2 id="order-title" class="section-title">Hungry now? Get Bahar delivered.</h2>
-      <p class="lede">
-        Order from Claremont Road through your usual apps. The buttons below are placeholders until the live restaurant pages are added.
-      </p>
+      <p class="lede">Order our food from our trusted partners using the links below.</p>
     </div>
     <div class="platforms">
-      <a class="btn btn-platform btn-disabled" href="#" aria-disabled="true" tabindex="-1">
+      <a
+        class="btn btn-platform"
+        href={site.order.deliveroo.href}
+        target="_blank"
+        rel="noreferrer"
+      >
         <span>{site.order.deliveroo.label}</span>
-        <small>URL TBC</small>
       </a>
-      <a class="btn btn-platform btn-disabled" href="#" aria-disabled="true" tabindex="-1">
+      <a class="btn btn-platform" href={site.order.justEat.href} target="_blank" rel="noreferrer">
         <span>{site.order.justEat.label}</span>
-        <small>URL TBC</small>
       </a>
     </div>
   </div>
@@ -44,19 +44,13 @@ import { site } from "../data/site";
   }
 
   .btn-platform {
-    flex-direction: column;
-    gap: 0.1rem;
-    align-items: flex-start;
+    align-items: center;
+    justify-content: flex-start;
     padding: 0.95rem 1.1rem;
   }
 
   .btn-platform span {
     font-size: 1.05rem;
-  }
-
-  .btn-platform small {
-    color: var(--muted);
-    font-weight: 500;
   }
 
   @media (min-width: 768px) {
