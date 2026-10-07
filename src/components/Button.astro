@@ -1,0 +1,24 @@
+---
+interface Props {
+  href: string;
+  variant?: "primary" | "secondary" | "dark" | "platform";
+  placeholder?: boolean;
+  class?: string;
+}
+
+const {
+  href,
+  variant = "primary",
+  placeholder = false,
+  class: className = "",
+} = Astro.props;
+---
+
+<a
+  class:list={["btn", `btn-${variant}`, placeholder && "btn-disabled", className]}
+  href={placeholder ? undefined : href}
+  aria-disabled={placeholder ? "true" : undefined}
+  tabindex={placeholder ? -1 : undefined}
+>
+  <slot />
+</a>

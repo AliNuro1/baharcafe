@@ -1,0 +1,126 @@
+---
+import { Image } from "astro:assets";
+import { site } from "../data/site";
+import logo from "../assets/brand/logopic.png";
+
+const path = Astro.url.pathname;
+const home = path === "/";
+---
+
+<header class="header">
+  <div class="header-inner">
+    <a class="brand" href="/" aria-label={`${site.name} home`}>
+      <Image
+        src={logo}
+        alt="Bahar Cafe"
+        widths={[240, 360, 480]}
+        sizes="(max-width: 767px) 148px, 188px"
+        quality={90}
+        class="brand-logo"
+      />
+    </a>
+
+    <nav class="nav" aria-label="Primary">
+      <a class="nav-desktop" href={home ? "#top" : "/"} aria-current={home ? "page" : undefined}>Home</a>
+      <a href={home ? "#menu" : "/#menu"}>Menu</a>
+      <a class="nav-desktop" href={home ? "#contact" : "/#contact"}>Contact</a>
+    </nav>
+
+    <a class="btn btn-primary btn-order" href={home ? "#order" : "/#order"}>Order Now</a>
+  </div>
+</header>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .header-inner {
+    height: var(--header-h);
+    width: min(100% - (var(--gutter) * 2), var(--container));
+    margin-inline: auto;
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    min-width: 0;
+    margin-right: auto;
+  }
+
+  .brand :global(img),
+  .brand-logo {
+    display: block;
+    height: 2.45rem;
+    width: auto;
+    max-width: 10.5rem;
+    object-fit: contain;
+    object-position: left center;
+  }
+
+  .nav {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+  }
+
+  .nav a {
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--heading);
+  }
+
+  .nav-desktop {
+    display: none;
+  }
+
+  .btn-order {
+    min-height: 2.3rem;
+    padding: 0.4rem 0.85rem;
+    font-size: 0.84rem;
+    flex: none;
+  }
+
+  @media (min-width: 768px) {
+    .nav {
+      gap: 1.35rem;
+    }
+
+    .nav a {
+      font-weight: 500;
+      color: var(--heading);
+      font-size: 0.92rem;
+    }
+
+    .nav a:hover,
+    .nav a[aria-current="page"] {
+      color: var(--sky-ink);
+    }
+
+    .nav-desktop {
+      display: inline;
+    }
+
+    .btn-order {
+      min-height: 2.6rem;
+      padding: 0.55rem 1.1rem;
+      font-size: 0.92rem;
+    }
+
+    .brand :global(img),
+    .brand-logo {
+      height: 2.85rem;
+      max-width: 13.5rem;
+    }
+  }
+</style>

@@ -1,0 +1,76 @@
+---
+import { site } from "../data/site";
+---
+
+<section class="section intro" id="about" aria-labelledby="intro-title">
+  <div class="container intro-grid">
+    <div>
+      <p class="eyebrow">The kitchen</p>
+      <h2 id="intro-title" class="section-title">East African flavours, Manchester table.</h2>
+      <p class="lede">
+        Bahar Cafe is a Somali and Kenyan cafe-restaurant on {site.location.street}.
+        Come for suqaar, anjeero, rice, chapati and the kind of welcome that feels like home.
+      </p>
+      <p class="lede">
+        The room is simple and bright. The food is generous. The neighbourhood is {site.location.city}.
+      </p>
+    </div>
+    <figure class="photo-slot">
+      <div class="photo-placeholder" role="img" aria-label="Food photograph placeholder">
+        <span>Food image</span>
+        <small>Placeholder — replace with a cafe or dish photograph</small>
+      </div>
+    </figure>
+  </div>
+</section>
+
+<style>
+  .intro {
+    background: var(--white);
+  }
+
+  .intro-grid {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .photo-slot {
+    margin: 0;
+  }
+
+  .photo-placeholder {
+    min-height: 16rem;
+    border-radius: var(--radius-lg);
+    background:
+      linear-gradient(180deg, var(--sky-mist), var(--cream));
+    border: 1px dashed rgba(31, 95, 138, 0.28);
+    display: grid;
+    place-content: center;
+    text-align: center;
+    gap: 0.35rem;
+    padding: 1.5rem;
+    color: var(--heading);
+  }
+
+  .photo-placeholder span {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+  }
+
+  .photo-placeholder small {
+    color: var(--muted);
+    font-size: 0.82rem;
+  }
+
+  @media (min-width: 768px) {
+    .intro-grid {
+      grid-template-columns: 1.05fr 0.95fr;
+      align-items: center;
+      gap: 3rem;
+    }
+
+    .photo-placeholder {
+      min-height: 22rem;
+    }
+  }
+</style>

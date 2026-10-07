@@ -1,0 +1,119 @@
+---
+import type { ImageMetadata } from "astro";
+import { Image } from "astro:assets";
+
+const modules = import.meta.glob<{ default: ImageMetadata }>("../assets/food/*.jpg", {
+  eager: true,
+});
+
+function galleryGroup(path: string) {
+  const name = path.split("/").pop() ?? "";
+  const lower = name.toLowerCase();
+  if (lower.includes("breakfast")) return 0;
+  if (lower.includes("lunchmeal")) return 2;
+  if (lower.includes("lunch")) return 1;
+  return 3;
+}
+
+const gallery = Object.entries(modules)
+  .filter(([path]) => !path.includes("Heroshot"))
+  .sort(([a], [b]) => {
+    const group = galleryGroup(a) - galleryGroup(b);
+    if (group !== 0) return group;
+    return a.localeCompare(b);
+  })
+  .map(([, mod]) => mod.default);
+---
+
+<section class="section gallery" id="gallery" aria-labelledby="gallery-title">
+  <div class="container">
+    <div class="head">
+      <p class="eyebrow">From the table</p>
+      <h2 id="gallery-title" class="section-title">The plates</h2>
+      <p class="lede">Dish names will be added here once the gallery captions are confirmed.</p>
+    </div>
+    <ul class="mosaic">
+      {
+        gallery.map((image, index) => (
+          <li class:list={[index % 7 === 0 && "wide"]}>
+            <figure>
+              <Image
+                src={image}
+                alt="Bahar Cafe dish — name to be added"
+                widths={[360, 640, 960]}
+                sizes={index % 7 === 0 ? "(max-width: 767px) 100vw, 66vw" : "(max-width: 767px) 50vw, 33vw"}
+                quality={70}
+              />
+              <figcaption class="caption"></figcaption>
+            </figure>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .gallery {
+    background: var(--paper);
+  }
+
+  .head {
+    margin-bottom: 1.4rem;
+  }
+
+  .mosaic {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.55rem;
+  }
+
+  figure {
+    margin: 0;
+    border-radius: 18px;
+    overflow: hidden;
+    background: var(--white);
+    box-shadow: var(--shadow-sm);
+    height: 100%;
+  }
+
+  figure :global(img) {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+  }
+
+  .caption:empty {
+    display: none;
+  }
+
+  .wide {
+    grid-column: 1 / -1;
+  }
+
+  .wide :global(img) {
+    aspect-ratio: 16 / 9;
+  }
+
+  @media (min-width: 768px) {
+    .mosaic {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.75rem;
+    }
+
+    .wide {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+
+    .wide :global(img) {
+      aspect-ratio: auto;
+      height: 100%;
+      min-height: 100%;
+    }
+  }
+</style>

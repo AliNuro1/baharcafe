@@ -1,0 +1,129 @@
+---
+import { site } from "../data/site";
+
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="container footer-grid">
+    <div>
+      <p class="footer-brand">Bahar Cafe</p>
+      <p class="footer-tag">{site.tagline}</p>
+      <p>
+        {site.location.street}<br />
+        {site.location.city}
+      </p>
+    </div>
+
+    <div>
+      <h2>Visit</h2>
+      <p class="placeholder-chip">Replace later</p>
+      <p>{site.hours.summary}</p>
+      {
+        site.hours.lines.map((line) => (
+          <p>
+            {line.days}: {line.time}
+          </p>
+        ))
+      }
+      <p>{site.phone.label}</p>
+    </div>
+
+    <div>
+      <h2>Order</h2>
+      <p class="placeholder-chip">Links TBC</p>
+      <a href="#" aria-disabled="true" tabindex="-1">{site.order.deliveroo.label}</a>
+      <a href="#" aria-disabled="true" tabindex="-1">{site.order.justEat.label}</a>
+    </div>
+
+    <div>
+      <h2>Explore</h2>
+      <a href="/">Home</a>
+      <a href="/#menu">Menu</a>
+      <a href="/#contact">Contact</a>
+      <a href="/#order">Order Now</a>
+      <p class="placeholder-chip">Social TBC</p>
+      {
+        site.social.map((item) => (
+          <a href="#" aria-disabled="true" tabindex="-1">
+            {item.label}
+          </a>
+        ))
+      }
+    </div>
+  </div>
+  <div class="container copyright">
+    <p>© {year} Bahar Cafe. Claremont Road, Manchester.</p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--sky-mist);
+    color: var(--ink);
+    padding-top: var(--space-9);
+    padding-bottom: var(--space-6);
+    border-top: 1px solid var(--line);
+  }
+
+  .footer-grid {
+    display: grid;
+    gap: 2rem;
+  }
+
+  .footer-brand {
+    font-family: var(--font-display);
+    font-size: 1.7rem;
+    font-style: italic;
+    font-weight: 600;
+    color: var(--heading);
+  }
+
+  .footer-tag {
+    color: var(--heading);
+    margin: 0.3rem 0 0.8rem;
+    font-weight: 500;
+  }
+
+  h2 {
+    font-size: 0.74rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin: 0 0 0.7rem;
+    color: var(--heading);
+  }
+
+  p,
+  a {
+    margin: 0 0 0.35rem;
+    color: inherit;
+    text-decoration: none;
+    display: block;
+    font-size: 0.95rem;
+  }
+
+  a:hover {
+    color: var(--sky-ink);
+  }
+
+  .placeholder-chip {
+    background: var(--sky-soft);
+    color: var(--heading);
+    margin-bottom: 0.65rem;
+  }
+
+  .copyright {
+    margin-top: 2.5rem;
+    padding-top: 1.1rem;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+
+  @media (min-width: 768px) {
+    .footer-grid {
+      grid-template-columns: 1.3fr 1fr 1fr 1fr;
+      gap: 2.5rem;
+    }
+  }
+</style>

@@ -1,0 +1,68 @@
+---
+import type { ImageMetadata } from "astro";
+import DishCard from "./DishCard.astro";
+import { featuredDishes } from "../data/site";
+
+const images = import.meta.glob<{ default: ImageMetadata }>("../assets/food/*.jpg", {
+  eager: true,
+});
+
+function dishImage(file: string) {
+  const match = Object.entries(images).find(([path]) => path.endsWith(file));
+  if (!match) {
+    throw new Error(`Missing dish image: ${file}`);
+  }
+  return match[1].default;
+}
+---
+
+<section class="section taste" id="menu" aria-labelledby="menu-title">
+  <div class="container">
+    <div class="head">
+      <p class="eyebrow">From the pass</p>
+      <h2 id="menu-title" class="section-title">A taste of Bahar</h2>
+      <p class="lede">A short look at the kind of plates we cook.</p>
+    </div>
+    <div class="grid">
+      {
+        featuredDishes.map((dish) => (
+          <DishCard
+            image={dishImage(dish.image)}
+            name={dish.name}
+            description={dish.description}
+          />
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .taste {
+    background: var(--sky-mist);
+  }
+
+  .head {
+    max-width: 38rem;
+    margin-bottom: 1.6rem;
+  }
+
+  .grid {
+    display: grid;
+    gap: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 1.15rem;
+    }
+  }
+
+  @media (min-width: 1100px) {
+    .grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.35rem;
+    }
+  }
+</style>
