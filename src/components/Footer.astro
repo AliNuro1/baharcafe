@@ -15,17 +15,29 @@ const year = new Date().getFullYear();
       </p>
     </div>
 
-    <div>
+    <div class="visit">
       <h2>Visit</h2>
-      <p>{site.hours.summary}</p>
-      {
-        site.hours.lines.map((line) => (
-          <p>
-            {line.days}: {line.time}
-          </p>
-        ))
-      }
-      <a href={site.phone.href}>{site.phone.label}</a>
+      <dl>
+        <div>
+          <dt>Hours</dt>
+          <dd>
+            {
+              site.hours.lines.map((line) => (
+                <p class="hours-line">
+                  <span class="hours-time">{line.time}</span>
+                  <span class="hours-days">{line.days}</span>
+                </p>
+              ))
+            }
+          </dd>
+        </div>
+        <div>
+          <dt>Phone</dt>
+          <dd>
+            <a href={site.phone.href}>{site.phone.label}</a>
+          </dd>
+        </div>
+      </dl>
     </div>
 
     <div>
@@ -105,6 +117,45 @@ const year = new Date().getFullYear();
 
   a:hover {
     color: var(--sky-ink);
+  }
+
+  .visit dl {
+    margin: 0;
+    display: grid;
+    gap: 0.95rem;
+  }
+
+  .visit dt {
+    margin: 0 0 0.2rem;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .visit dd {
+    margin: 0;
+  }
+
+  .hours-line {
+    margin: 0;
+  }
+
+  .hours-time,
+  .hours-days,
+  .visit a {
+    display: block;
+    margin: 0;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 400;
+    letter-spacing: normal;
+    color: inherit;
+  }
+
+  .hours-days {
+    margin-top: 0.12rem;
   }
 
   .copyright {
