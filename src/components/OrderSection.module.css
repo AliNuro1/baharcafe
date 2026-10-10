@@ -1,0 +1,36 @@
+.order {
+  padding-block: var(--space-8);
+}
+
+.panel {
+  background: linear-gradient(180deg, #e7fbfc, #f7fefe);
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  padding: 1.4rem 1.2rem 1.5rem;
+  display: grid;
+  gap: 1.25rem;
+}
+
+.platforms {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.platform {
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0.95rem 1.1rem;
+}
+
+.platform span {
+  font-size: 1.05rem;
+}
+
+@media (min-width: 768px) {
+  .panel {
+    grid-template-columns: 1.1fr 0.9fr;
+    align-items: center;
+    padding: 2.2rem 2.3rem;
+    gap: 2.5rem;
+  }
+}

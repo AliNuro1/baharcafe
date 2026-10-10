@@ -1,0 +1,27 @@
+.taste {
+  background: var(--sky-mist);
+}
+
+.head {
+  max-width: 38rem;
+  margin-bottom: 1.6rem;
+}
+
+.grid {
+  display: grid;
+  gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.15rem;
+  }
+}
+
+@media (min-width: 1100px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.35rem;
+  }
+}

@@ -1,0 +1,90 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--line);
+}
+
+.inner {
+  height: var(--header-h);
+  width: min(100% - (var(--gutter) * 2), var(--container));
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  min-width: 0;
+  margin-right: auto;
+}
+
+.logo {
+  display: block;
+  height: 2.45rem;
+  width: auto;
+  max-width: 10.5rem;
+  object-fit: contain;
+  object-position: left center;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.nav a {
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--heading);
+}
+
+.desktop {
+  display: none;
+}
+
+.order {
+  min-height: 2.3rem;
+  padding: 0.4rem 0.85rem;
+  font-size: 0.84rem;
+  flex: none;
+}
+
+@media (min-width: 768px) {
+  .nav {
+    gap: 1.35rem;
+  }
+
+  .nav a {
+    font-weight: 500;
+    color: var(--heading);
+    font-size: 0.92rem;
+  }
+
+  .nav a:hover,
+  .nav a[aria-current="page"] {
+    color: var(--sky-ink);
+  }
+
+  .desktop {
+    display: inline;
+  }
+
+  .order {
+    min-height: 2.6rem;
+    padding: 0.55rem 1.1rem;
+    font-size: 0.92rem;
+  }
+
+  .logo {
+    height: 2.85rem;
+    max-width: 13.5rem;
+  }
+}
